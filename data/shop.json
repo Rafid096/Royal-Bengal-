@@ -23,6 +23,58 @@
   },
   "products": [
     {
+      "id": "pytsl69",
+      "name": "Full Sleeve Polo Shirt",
+      "cat": "শার্ট",
+      "price": 380,
+      "old": 500,
+      "desc": "📌 প্রোডাক্ট ডিটেইলসঃ\n🧵 ফ্যাব্রিক: প্রিমিয়াম চায়না কর্ড ফেব্রিক্স।\n🔲 ফ্যাব্রিক প্যাটার্ন: স্কয়ার বক্স টেক্সচার।\n🪡 ডিজাইন: প্রিমিয়াম এমব্রয়ডারি লোগো।\n⚖️ জিএসএম: ২৩০ জিএসএম ফেব্রিক্স।\n☁️ সফট ফিল: নরম ও আরামদায়ক।\n👔 কলার: প্রিমিয়াম স্টাইলিশ কাপ কলার।\n😎 লুক: স্টাইলিশ ও প্রিমিয়াম লুক।\n❄️ উপযোগিতা: শীতের জন্য পারফেক্ট",
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "soldOut": false,
+      "variants": [
+        {
+          "id": "v7aowwv",
+          "name": "খইরি",
+          "hex": "#702626",
+          "img": "images/3ayrqtmvmj6iej.jpg"
+        },
+        {
+          "id": "vmw9vf1",
+          "name": "কালো সবুজ",
+          "hex": "#172407",
+          "img": "images/ezsq3tmvmj6lhx.jpg"
+        },
+        {
+          "id": "vp3st3s",
+          "name": "সাদা",
+          "hex": "#ffffff",
+          "img": "images/kh9d6imvmj6p4b.jpg"
+        },
+        {
+          "id": "v13mei9",
+          "name": "নিল",
+          "hex": "#0a2140",
+          "img": "images/mw8vg0mvmj6qh7.jpg"
+        },
+        {
+          "id": "vn4uiki",
+          "name": "খয়রি",
+          "hex": "#4a1c1c",
+          "img": "images/je64zamvmj6tsy.jpg"
+        },
+        {
+          "id": "vr4qzlz",
+          "name": "কাল",
+          "hex": "#000000",
+          "img": "images/eptk2xmvmj6w7g.jpg"
+        }
+      ]
+    },
+    {
       "id": "p1",
       "name": "ওয়াশড ডেনিম শার্ট",
       "cat": "শার্ট",
