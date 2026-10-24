@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>অ্যাডমিন প্যানেল</title><meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@600;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap">
+<style>
+/* Utilitarian admin: sticky top bar with save, tabs, product accordion, settings form. Same denim-indigo accent as the storefront. */
+:root{--bg:#F2F3F1;--surface:#FFFFFF;--ink:#13181D;--mute:#5B6670;--line:#DCE0DD;--accent:#23407A;--accent-ink:#FFFFFF;--soft:#E7ECF5;--sale:#B8321E;--ok:#1B7F4B;--warn:#FFF2D2;--warn-ink:#6B4A00;--f-d:'Anek Bangla','Hind Siliguri','Noto Sans Bengali',system-ui,sans-serif;--f-b:'Hind Siliguri','Noto Sans Bengali',system-ui,sans-serif;color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1114;--surface:#171C21;--ink:#ECEFF2;--mute:#9AA5AF;--line:#2A323A;--accent:#86A6EA;--accent-ink:#0B1220;--soft:#1F2733;--sale:#FF8A73;--ok:#5CCB8C;--warn:#3A2F0E;--warn-ink:#F3D98A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1114;--surface:#171C21;--ink:#ECEFF2;--mute:#9AA5AF;--line:#2A323A;--accent:#86A6EA;--accent-ink:#0B1220;--soft:#1F2733;--sale:#FF8A73;--ok:#5CCB8C;--warn:#3A2F0E;--warn-ink:#F3D98A;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-b);-webkit-text-size-adjust:100%}
+img{max-width:100%}[hidden]{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2{font-family:var(--f-d);margin:0}
+.login{padding:36px 0 40px}
+.login h1{font-size:28px;font-weight:800;margin-bottom:6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0}
+.fld{margin:12px 0}
+.fld label{display:block;font-weight:600;margin-bottom:5px}
+.fld label small,.hint{font-weight:400;color:var(--mute);font-size:14px}
+.in{width:100%;border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 12px;min-height:44px}
+textarea.in{resize:vertical;min-height:84px}
+.two{display:grid;gap:0 12px}
+@media(min-width:560px){.two{grid-template-columns:1fr 1fr}}
+.btn{color:inherit;border:1.5px solid var(--ink);background:transparent;border-radius:12px;padding:11px 18px;font-weight:700;text-align:center;text-decoration:none;display:inline-block}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{border-color:var(--line);font-weight:600}
+.btn.full{display:block;width:100%}
+.btn[disabled],.sm[disabled]{opacity:.5;cursor:default}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.top b{font:800 19px var(--f-d)}
+.sp{flex:1}
+.dirty{background:var(--warn);color:var(--warn-ink);font-size:13px;padding:2px 10px;border-radius:999px}
+.status{margin:12px 0 0;padding:10px 12px;border-radius:10px;font-size:15px}
+.status.ok{background:var(--soft);color:var(--ok);font-weight:600}
+.status.err{background:var(--warn);color:var(--sale);font-weight:600}
+.status.info{background:var(--soft)}
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin:14px 0 6px}
+.tab{border:0;background:none;padding:9px 12px;font-weight:600;color:var(--mute);border-bottom:3px solid transparent}
+.tab.on{color:var(--ink);border-color:var(--accent)}
+.ap{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin:10px 0;overflow:hidden}
+.aph{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px}
+.aph img{width:48px;height:58px;object-fit:cover;border-radius:6px;display:block;background:var(--soft)}
+.aph b{display:block;line-height:1.3}
+.aph small{color:var(--mute)}
+.acts{display:flex;gap:6px}
+.sm{border:1.5px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 10px;font-weight:600;font-size:14px}
+.apf{padding:4px 12px 14px;border-top:1px solid var(--line);background:var(--bg)}
+.lbl{font-weight:600;margin:16px 0 8px}
+.vr{display:grid;grid-template-columns:54px minmax(0,1fr) 44px auto;gap:8px;align-items:center;margin:8px 0}
+.vr img{width:54px;height:66px;object-fit:cover;border-radius:6px;cursor:pointer;display:block;background:var(--soft)}
+.vr input[type=color]{width:44px;height:40px;padding:2px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg)}
+.note{background:var(--warn);color:var(--warn-ink);border-radius:10px;padding:10px 12px;margin:12px 0;font-size:15px}
+.chk{display:flex;gap:8px;align-items:center;font-weight:500}
+.chk input{width:18px;height:18px;accent-color:var(--accent)}
+main{padding-bottom:60px}
+</style></head><body>
+<div id="app"></div>
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var uid=function(){return Math.random().toString(36).slice(2,8)};
+var BN='০১২৩৪৫৬৭৮৯';
+var toEn=function(s){return String(s).replace(/[০-৯]/g,function(d){return BN.indexOf(d)})};
+var numVal=function(v){return parseInt(toEn(v).replace(/[^\d]/g,''),10)||0};
+var PLACEHOLDER='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480"><rect width="400" height="480" fill="#d9dde3"/><text x="200" y="245" font-size="26" text-anchor="middle" fill="#6b7480" font-family="sans-serif">ছবি দিন</text></svg>');
+
+var CFG=null,S=null,SHA=null;
+var pending={},previews={};   /* new images: path -> dataURI (pending = not yet uploaded) */
+var ui={view:'login',tab:'p',openP:null,confirmDel:null,busy:false,status:null,dirty:false};
+
+function loadCfg(){try{var a=localStorage.getItem('adm_cfg')||sessionStorage.getItem('adm_cfg');return a?JSON.parse(a):null}catch(e){return null}}
+function saveCfg(){try{localStorage.removeItem('adm_cfg');sessionStorage.removeItem('adm_cfg');(CFG.remember?localStorage:sessionStorage).setItem('adm_cfg',JSON.stringify(CFG))}catch(e){}}
+function clearCfg(){try{localStorage.removeItem('adm_cfg');sessionStorage.removeItem('adm_cfg')}catch(e){}}
+function fromB64(s){var b=atob(s.replace(/\s/g,'')),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return new TextDecoder().decode(u)}
+function toB64(str){var u=new TextEncoder().encode(str),b='';for(var i=0;i<u.length;i++)b+=String.fromCharCode(u[i]);return btoa(b)}
+
+function gh(path,opt){
+  opt=opt||{};
+  var h={'Authorization':'Bearer '+CFG.token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+  if(opt.body)h['Content-Type']='application/json';
+  return fetch('https://api.github.com/repos/'+encodeURIComponent(CFG.owner)+'/'+encodeURIComponent(CFG.repo)+path,{method:opt.method||'GET',headers:h,body:opt.body?JSON.stringify(opt.body):undefined})
+  .then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok){var e=new Error(j.message||r.statusText);e.status=r.status;throw e}return j})});
+}
+function errMsg(e){
+  if(e.status===401)return 'টোকেন ঠিক নেই বা মেয়াদ শেষ। নতুন টোকেন তৈরি করে আবার লগইন করুন।';
+  if(e.status===403)return 'টোকেনের এই রিপোজিটরিতে লেখার অনুমতি নেই (Contents: Read and write দিতে হবে)।';
+  if(e.status===404)return 'রিপোজিটরি, ব্রাঞ্চ বা data/shop.json ফাইল পাওয়া যায়নি। নাম ও ব্রাঞ্চ মিলিয়ে দেখুন।';
+  if(e.status===409||e.status===422)return 'অন্য কোথাও থেকে ফাইল বদলে গেছে। পেজ রিলোড করে আবার চেষ্টা করুন। ('+e.message+')';
+  if(!e.status)return 'ইন্টারনেট সংযোগ বা GitHub-এর সাথে যোগাযোগে সমস্যা হয়েছে।';
+  return e.message||'অজানা সমস্যা হয়েছে।';
+}
+function loadShop(){
+  return gh('/contents/data/shop.json?ref='+encodeURIComponent(CFG.branch)).then(function(j){
+    S=JSON.parse(fromB64(j.content));SHA=j.sha;
+    S.shop.categories=S.shop.categories||[];S.shop.policies=S.shop.policies||[];S.products=S.products||[];
+  });
+}
+function setStatus(t,m){ui.status=t?{t:t,m:m}:null;var el=$('#status');if(el){el.className='status '+(t||'');el.textContent=m||'';el.hidden=!t}}
+
+function login(){
+  var f=function(id){return $('#'+id).value.trim()};
+  CFG={owner:f('l-owner'),repo:f('l-repo'),branch:f('l-branch')||'main',token:f('l-token'),remember:$('#l-rem').checked};
+  if(!CFG.owner||!CFG.repo||!CFG.token){setStatus('err','ইউজারনেম, রিপোজিটরির নাম ও টোকেন তিনটিই দিন।');return}
+  ui.busy=true;setStatus('info','যাচাই হচ্ছে…');
+  loadShop().then(function(){ui.busy=false;saveCfg();ui.view='edit';ui.status=null;render()},function(e){ui.busy=false;CFG=null;setStatus('err',errMsg(e))});
+}
+function logout(){
+  if(ui.dirty&&ui.confirmOut!==1){ui.confirmOut=1;setStatus('err','সংরক্ষণ না করা পরিবর্তন আছে। আবার “বের হন” চাপলে সেগুলো বাদ যাবে।');return}
+  clearCfg();CFG=null;S=null;ui.view='login';ui.dirty=false;ui.confirmOut=0;ui.status=null;pending={};render();
+}
+function imgSrc(p){return previews[p]||('../'+p)}
+function usedPaths(){var u={};S.products.forEach(function(p){p.variants.forEach(function(v){u[v.img]=1})});return u}
+function save(){
+  if(ui.busy)return;
+  var ph=Object.keys(usedPaths()).filter(function(x){return x.indexOf('images/placeholder-')===0});
+  if(ph.length){setStatus('err','কিছু রঙ বা প্রোডাক্টে এখনো ছবি দেওয়া হয়নি। ছবির ঘরে চাপ দিয়ে ছবি বাছুন, তারপর সংরক্ষণ করুন।');return}
+  ui.busy=true;var btn=$('#savebtn');if(btn){btn.disabled=true;btn.textContent='সংরক্ষণ হচ্ছে…'}
+  var used=usedPaths(),paths=Object.keys(pending).filter(function(p){return used[p]});
+  var chain=Promise.resolve(),n=0;
+  paths.forEach(function(p){
+    chain=chain.then(function(){
+      setStatus('info','ছবি আপলোড হচ্ছে ('+(++n)+'/'+paths.length+')…');
+      return gh('/contents/'+p.split('/').map(encodeURIComponent).join('/'),{method:'PUT',body:{message:'ছবি যোগ: '+p,content:pending[p].split(',')[1],branch:CFG.branch}}).then(function(){delete pending[p]});
+    });
+  });
+  chain.then(function(){
+    setStatus('info','দোকানের তথ্য সংরক্ষণ হচ্ছে…');
+    return gh('/contents/data/shop.json',{method:'PUT',body:{message:'দোকানের তথ্য আপডেট (অ্যাডমিন প্যানেল)',content:toB64(JSON.stringify(S,null,2)+'\n'),sha:SHA,branch:CFG.branch}});
+  }).then(function(j){
+    SHA=j.content.sha;ui.dirty=false;ui.busy=false;
+    render();setStatus('ok','সংরক্ষণ হয়েছে। ১–২ মিনিটের মধ্যে ওয়েবসাইটে আপডেট দেখা যাবে।');
+  }).catch(function(e){
+    ui.busy=false;render();setStatus('err',errMsg(e));
+  });
+}
+function markDirty(){ui.dirty=true;ui.confirmOut=0;var d=$('#dirty');if(d)d.hidden=false}
+
+/* ---------- views ---------- */
+function render(){
+  if(ui.view==='login')return renderLogin();
+  var h='<div class="top"><div class="wrap"><b>অ্যাডমিন প্যানেল</b><span class="dirty" id="dirty"'+(ui.dirty?'':' hidden')+'>সংরক্ষণ বাকি</span><span class="sp"></span><a class="btn ghost" style="padding:7px 12px" href="../" target="_blank" rel="noopener">ওয়েবসাইট দেখুন</a><button class="btn pri" style="padding:8px 16px" id="savebtn" data-act="save"'+(ui.busy?' disabled':'')+'>'+(ui.busy?'সংরক্ষণ হচ্ছে…':'সংরক্ষণ করুন')+'</button></div></div>';
+  h+='<main class="wrap"><div class="status'+(ui.status?' '+ui.status.t:'')+'" id="status"'+(ui.status?'':' hidden')+'>'+esc(ui.status?ui.status.m:'')+'</div>';
+  h+='<div class="tabs"><button class="tab'+(ui.tab==='p'?' on':'')+'" data-act="tab" data-v="p">প্রোডাক্ট</button><button class="tab'+(ui.tab==='s'?' on':'')+'" data-act="tab" data-v="s">দোকান সেটিং</button><button class="tab" data-act="logout" style="margin-left:auto">বের হন</button></div>';
+  h+=(ui.tab==='p'?products():settings())+'</main>';
+  $('#app').innerHTML=h;
+}
+function renderLogin(){
+  var host=location.hostname,path=location.pathname.split('/').filter(Boolean);
+  var o=/\.github\.io$/.test(host)?host.split('.')[0]:'',r=(o&&path.length>1)?path[0]:(o?o+'.github.io':'');
+  $('#app').innerHTML='<div class="wrap login"><h1>অ্যাডমিন প্যানেল</h1><p class="hint">আপনার দোকানের প্রোডাক্ট, দাম ও সেটিং এখান থেকে বদলান। সংরক্ষণ করলে পরিবর্তন সরাসরি আপনার GitHub রিপোজিটরিতে যাবে এবং ওয়েবসাইট নিজে থেকে আপডেট হবে।</p>'
+  +'<div class="card"><div class="two"><div class="fld"><label for="l-owner">GitHub ইউজারনেম</label><input class="in" id="l-owner" autocomplete="username" value="'+esc(o)+'"></div><div class="fld"><label for="l-repo">রিপোজিটরির নাম</label><input class="in" id="l-repo" value="'+esc(r)+'"></div></div>'
+  +'<div class="fld"><label for="l-branch">ব্রাঞ্চ <small>(সাধারণত main)</small></label><input class="in" id="l-branch" value="main"></div>'
+  +'<div class="fld"><label for="l-token">অ্যাক্সেস টোকেন</label><input class="in" id="l-token" type="password" autocomplete="current-password" placeholder="github_pat_…"><div class="hint">টোকেন তৈরির নিয়ম README ফাইলে আছে। টোকেন কাউকে দেবেন না।</div></div>'
+  +'<div class="fld"><label class="chk"><input type="checkbox" id="l-rem"> এই ডিভাইসে মনে রাখুন <small>(শুধু নিজের ফোন/কম্পিউটারে)</small></label></div>'
+  +'<div class="status'+(ui.status?' '+ui.status.t:'')+'" id="status"'+(ui.status?'':' hidden')+'>'+esc(ui.status?ui.status.m:'')+'</div>'
+  +'<button class="btn pri full" style="margin-top:14px" data-act="login">লগইন</button></div></div>';
+}
+function products(){
+  var h='<button class="btn pri" data-act="new-p">+ নতুন প্রোডাক্ট যোগ করুন</button>';
+  S.products.forEach(function(p,idx){
+    var open=ui.openP===p.id;
+    h+='<div class="ap"><div class="aph"><img src="'+esc(imgSrc(p.variants[0].img))+'" alt=""><div><b>'+esc(p.name)+'</b><small>৳'+p.price+' · '+esc(p.cat)+(p.soldOut?' · স্টক শেষ':'')+'</small></div><div class="acts"><button class="sm" data-act="mv" data-id="'+p.id+'" data-d="-1" aria-label="উপরে"'+(idx===0?' disabled':'')+'>↑</button><button class="sm" data-act="mv" data-id="'+p.id+'" data-d="1" aria-label="নিচে"'+(idx===S.products.length-1?' disabled':'')+'>↓</button><button class="sm" data-act="edit-p" data-id="'+p.id+'">'+(open?'বন্ধ':'এডিট')+'</button></div></div>';
+    if(open){
+      h+='<div class="apf"><div class="fld"><label>প্রোডাক্টের নাম</label><input class="in" data-p="'+p.id+'" data-f="name" value="'+esc(p.name)+'"></div>';
+      h+='<div class="two"><div class="fld"><label>বিভাগ</label><select class="in" data-p="'+p.id+'" data-f="cat">'+S.shop.categories.map(function(c){return '<option'+(c===p.cat?' selected':'')+'>'+esc(c)+'</option>'}).join('')+'</select></div>';
+      h+='<div class="fld"><label>সাইজ <small>(কমা দিয়ে)</small></label><input class="in" data-p="'+p.id+'" data-f="sizes" value="'+esc(p.sizes.join(', '))+'"></div></div>';
+      h+='<div class="two"><div class="fld"><label>বিক্রয় মূল্য (৳)</label><input class="in" inputmode="numeric" data-p="'+p.id+'" data-f="price" value="'+p.price+'"></div><div class="fld"><label>আগের দাম (৳) <small>(ছাড় দেখাতে, নাহলে ০)</small></label><input class="in" inputmode="numeric" data-p="'+p.id+'" data-f="old" value="'+p.old+'"></div></div>';
+      h+='<div class="fld"><label>বিবরণ</label><textarea class="in" data-p="'+p.id+'" data-f="desc">'+esc(p.desc)+'</textarea></div>';
+      h+='<div class="fld"><label class="chk"><input type="checkbox" data-p="'+p.id+'" data-f="soldOut"'+(p.soldOut?' checked':'')+'> স্টক শেষ (অর্ডার বন্ধ থাকবে)</label></div>';
+      h+='<div class="lbl">রঙ / ডিজাইন ও ছবি <span class="hint">ছবিতে চাপ দিয়ে বদলান</span></div>';
+      p.variants.forEach(function(v){
+        h+='<div class="vr"><img src="'+esc(imgSrc(v.img))+'" alt="" data-act="pick-img" data-p="'+p.id+'" data-v="'+v.id+'"><input class="in" data-p="'+p.id+'" data-v="'+v.id+'" data-f="vname" value="'+esc(v.name)+'" aria-label="রঙের নাম"><input type="color" data-p="'+p.id+'" data-v="'+v.id+'" data-f="vhex" value="'+esc(v.hex)+'" aria-label="রঙ"><button class="sm" data-act="del-v" data-p="'+p.id+'" data-v="'+v.id+'"'+(p.variants.length<2?' disabled':'')+'>মুছুন</button></div>';
+      });
+      h+='<button class="btn ghost" style="padding:8px 14px" data-act="add-v" data-p="'+p.id+'">+ নতুন রঙ / ছবি যোগ করুন</button>';
+      h+='<div style="margin-top:16px"><button class="sm" style="color:var(--sale);border-color:var(--sale)" data-act="del-p" data-id="'+p.id+'">'+(ui.confirmDel===p.id?'নিশ্চিত? প্রোডাক্টটি মুছুন':'প্রোডাক্ট মুছুন')+'</button></div></div>';
+    }
+    h+='</div>';
+  });
+  return h;
+}
+function settings(){
+  var s=S.shop;
+  function f(label,key,val,extra){return '<div class="fld"><label>'+label+'</label><input class="in" data-s="'+key+'" value="'+esc(val)+'" '+(extra||'')+'></div>'}
+  var h='<div class="card" style="margin-top:12px">';
+  if(!s.whatsapp)h+='<div class="note">প্রথমে আপনার WhatsApp নম্বর দিন। গ্রাহকের অর্ডার এই নম্বরেই আসবে।</div>';
+  h+=f('দোকানের নাম','name',s.name)+f('ট্যাগলাইন (হোমপেজের বড় লেখা)','tagline',s.tagline)+f('উপরের নোটিশ লাইন (ফাঁকা রাখলে দেখাবে না)','notice',s.notice);
+  h+=f('WhatsApp নম্বর (অর্ডার এখানে আসবে)','whatsapp',s.whatsapp,'inputmode="tel" placeholder="01XXXXXXXXX"');
+  h+=f('Facebook পেজের ইউজারনেম (মেসেঞ্জারের জন্য, ঐচ্ছিক)','messenger',s.messenger,'placeholder="yourpagename"');
+  h+='<div class="two">'+f('বিকাশ নম্বর (ঐচ্ছিক)','bkash',s.bkash,'inputmode="tel"')+f('নগদ নম্বর (ঐচ্ছিক)','nagad',s.nagad,'inputmode="tel"')+'</div>';
+  h+='<div class="two">'+f('ঢাকার ভিতরে ডেলিভারি চার্জ (৳)','feeIn',s.feeIn,'inputmode="numeric"')+f('ঢাকার বাইরে ডেলিভারি চার্জ (৳)','feeOut',s.feeOut,'inputmode="numeric"')+'</div>';
+  h+=f('এর বেশি অর্ডারে ডেলিভারি ফ্রি (৳, বন্ধ রাখতে ০)','freeOver',s.freeOver,'inputmode="numeric"');
+  h+=f('বিভাগের তালিকা (কমা দিয়ে)','categories',s.categories.join(', '));
+  h+='<div class="fld"><label>নিচের নীতি / তথ্য (প্রতি লাইনে একটি)</label><textarea class="in" data-s="policies" style="min-height:110px">'+esc(s.policies.join('\n'))+'</textarea></div></div>';
+  return h;
+}
+
+/* ---------- images ---------- */
+function readImage(file,cb){
+  var r=new FileReader();
+  r.onload=function(){
+    var img=new Image();
+    img.onload=function(){
+      var sc=Math.min(1,900/Math.max(img.width,img.height)),c=document.createElement('canvas');
+      c.width=Math.round(img.width*sc);c.height=Math.round(img.height*sc);
+      var x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(img,0,0,c.width,c.height);
+      cb(c.toDataURL('image/jpeg',0.8));
+    };
+    img.onerror=function(){setStatus('err','ছবিটি পড়া যায়নি, অন্য ছবি দিন।')};
+    img.src=r.result;
+  };
+  r.readAsDataURL(file);
+}
+function pickImage(cb){
+  var i=document.createElement('input');i.type='file';i.accept='image/*';
+  i.onchange=function(){if(i.files&&i.files[0])readImage(i.files[0],function(u){var path='images/'+uid()+Date.now().toString(36)+'.jpg';pending[path]=u;previews[path]=u;cb(path)})};
+  i.click();
+}
+
+/* ---------- events ---------- */
+function prod(id){return S.products.filter(function(p){return p.id===id})[0]}
+function vari(p,id){return p.variants.filter(function(v){return v.id===id})[0]}
+document.addEventListener('click',function(e){
+  var el=e.target.closest('[data-act]');if(!el)return;
+  var a=el.dataset.act,id=el.dataset.id,d=+el.dataset.d;
+  switch(a){
+    case 'login':login();break;
+    case 'logout':logout();break;
+    case 'save':save();break;
+    case 'tab':ui.tab=el.dataset.v;render();break;
+    case 'edit-p':ui.openP=ui.openP===id?null:id;ui.confirmDel=null;render();break;
+    case 'mv':{var i=S.products.findIndex(function(x){return x.id===id}),j=i+d;if(j>=0&&j<S.products.length){var t=S.products[i];S.products[i]=S.products[j];S.products[j]=t;markDirty();render()}break}
+    case 'new-p':{var np={id:'p'+uid(),name:'নতুন প্রোডাক্ট',cat:S.shop.categories[0]||'',price:0,old:0,desc:'',sizes:['M','L','XL','XXL'],soldOut:false,variants:[{id:'v'+uid(),name:'ডিফল্ট',hex:'#888888',img:PLACEHOLDER_PATH()}]};S.products.unshift(np);ui.openP=np.id;markDirty();render();break}
+    case 'del-p':if(ui.confirmDel===id){S.products=S.products.filter(function(x){return x.id!==id});ui.openP=null;ui.confirmDel=null;markDirty()}else{ui.confirmDel=id}render();break;
+    case 'add-v':{var ap=prod(el.dataset.p);ap.variants.push({id:'v'+uid(),name:'নতুন রঙ',hex:'#888888',img:PLACEHOLDER_PATH()});markDirty();render();break}
+    case 'del-v':{var dp=prod(el.dataset.p);if(dp.variants.length>1){dp.variants=dp.variants.filter(function(v){return v.id!==el.dataset.v});markDirty();render()}break}
+    case 'pick-img':{var pr=prod(el.dataset.p),vv=vari(pr,el.dataset.v);pickImage(function(path){vv.img=path;markDirty();render()});break}
+  }
+});
+/* A product added without a photo uses an inline placeholder; it is replaced once a photo is chosen. */
+function PLACEHOLDER_PATH(){var path='images/placeholder-'+uid()+'.jpg';previews[path]=PLACEHOLDER;return path}
+function onField(e){
+  var el=e.target;
+  if(el.dataset.p){
+    var p=prod(el.dataset.p);if(!p)return;var f=el.dataset.f;
+    if(f==='name')p.name=el.value;
+    else if(f==='cat')p.cat=el.value;
+    else if(f==='desc')p.desc=el.value;
+    else if(f==='soldOut')p.soldOut=el.checked;
+    else if(f==='price')p.price=numVal(el.value);
+    else if(f==='old')p.old=numVal(el.value);
+    else if(f==='sizes')p.sizes=el.value.split(/[,،\s]+/).map(function(x){return x.trim()}).filter(Boolean);
+    else if(f==='vname')vari(p,el.dataset.v).name=el.value;
+    else if(f==='vhex')vari(p,el.dataset.v).hex=el.value;
+    markDirty();
+    if(e.type==='change'&&(f==='name'||f==='price'||f==='soldOut'||f==='cat'))render();
+    return;
+  }
+  if(el.dataset.s){
+    var s=el.dataset.s,v=el.value;
+    if(s==='feeIn'||s==='feeOut'||s==='freeOver')S.shop[s]=numVal(v);
+    else if(s==='categories')S.shop.categories=v.split(/[,،]+/).map(function(x){return x.trim()}).filter(Boolean);
+    else if(s==='policies')S.shop.policies=v.split('\n').map(function(x){return x.trim()}).filter(Boolean);
+    else S.shop[s]=v;
+    markDirty();
+  }
+}
+document.addEventListener('input',onField);
+document.addEventListener('change',onField);
+document.addEventListener('keydown',function(e){if(e.key==='Enter'&&ui.view==='login'&&e.target.matches('input')){login()}});
+window.addEventListener('beforeunload',function(e){if(ui.dirty){e.preventDefault();e.returnValue=''}});
+
+/* start: use a remembered login if there is one */
+CFG=loadCfg();
+if(CFG&&CFG.token){ui.busy=true;ui.view='login';renderLogin();setStatus('info','লোড হচ্ছে…');
+  loadShop().then(function(){ui.busy=false;ui.view='edit';ui.status=null;render()},function(e){ui.busy=false;var m=errMsg(e);CFG=null;ui.view='login';renderLogin();setStatus('err',m)});
+}else{CFG=null;render()}
+})();
+</script>
+</body></html>
