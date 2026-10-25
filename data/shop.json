@@ -1,11 +1,11 @@
 {
   "schema": 2,
   "shop": {
-    "name": "Royals Cart BD",
+    "name": "Royal Bengal",
     "tagline": "ছেলে, মেয়ে ও বাচ্চাদের পছন্দের পোশাক, সারা বাংলাদেশে হোম ডেলিভারি।",
-    "logo": "images/logo-eh9niomvnj67ic.jpg",
-    "waIcon": "images/waIcon-p51jxlmvnhqqjx.png",
-    "brandColor": "#ff5959",
+    "logo": "",
+    "waIcon": "",
+    "brandColor": "#1E3A8A",
     "heroEyebrow": "নতুন কালেকশন এসেছে",
     "heroTitle": "পছন্দের পোশাক, সারা বাংলাদেশে হোম ডেলিভারি",
     "heroSub": "ছেলে, মেয়ে ও বাচ্চাদের নতুন কালেকশন। পছন্দ করুন, অর্ডার কনফার্ম করুন, হাতে পেয়ে টাকা দিন।",
@@ -29,15 +29,18 @@
     "copyright": "© {year} Rafid Ahammed. সর্বস্বত্ব সংরক্ষিত।",
     "orderEmail": "bleachtd72@gmail.com",
     "contactEmail": "bleachtd72@gmail.com",
-    "phone": "01906818233",
-    "whatsapp": "01928187197",
+    "phone": "",
+    "whatsapp": "",
     "facebook": "",
     "address": "",
-    "bkash": "01984978437",
-    "nagad": "01928187197",
+    "bkash": "",
+    "nagad": "",
     "feeIn": 60,
     "feeOut": 120,
-    "freeOver": 0
+    "freeOver": 0,
+    "emailjsService": "service_cikx8lm",
+    "emailjsTemplate": "template_aqkckko",
+    "emailjsKey": "T5oFlRhRlVCDoxEQL"
   },
   "categories": [
     {
@@ -149,171 +152,6 @@
     }
   ],
   "products": [
-    {
-      "id": "pkp0mt5",
-      "code": "RB-112",
-      "name": "Gents Hoodie for Winter",
-      "cat": "c-boys",
-      "sub": "s-sweat",
-      "events": [
-        "e-winter"
-      ],
-      "price": 750,
-      "old": 850,
-      "sizes": [
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "desc": "Main Material: Cotton\nFabrics: Cotton\nPremium Quality\nFabrication: 320(+-)GSM\nSleeve: Full Sleeve\n100% Export Quality Sewing",
-      "soldOut": false,
-      "visible": true,
-      "featured": false,
-      "badge": "",
-      "video": "",
-      "variants": [
-        {
-          "id": "vy8iiuf",
-          "name": "Default",
-          "hex": "#000000",
-          "imgs": [
-            "images/k7pkqpmvnivfi6.jpg"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "phegs44",
-      "code": "RB-111",
-      "name": "Gents Hoodie for Winter",
-      "cat": "c-boys",
-      "sub": "s-sweat",
-      "events": [
-        "e-winter"
-      ],
-      "price": 750,
-      "old": 850,
-      "sizes": [
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "desc": "Main Material: Cotton\nFabrics: Cotton\nPremium Quality\nFabrication: 320(+-)GSM\nSleeve: Full Sleeve\n100% Export Quality Sewing",
-      "soldOut": false,
-      "visible": true,
-      "featured": false,
-      "badge": "",
-      "video": "",
-      "variants": [
-        {
-          "id": "vrrxd3g",
-          "name": "White",
-          "hex": "#ffffff",
-          "imgs": [
-            "images/7yogkumvniu9ii.jpg"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "p14b02v",
-      "code": "RB-110",
-      "name": "Gents Hoodie for Winter",
-      "cat": "c-boys",
-      "sub": "s-sweat",
-      "events": [],
-      "price": 750,
-      "old": 850,
-      "sizes": [
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "desc": "Main Material: Cotton\nFabrics: Cotton\nPremium Quality\nFabrication: 320(+-)GSM\nSleeve: Full Sleeve\n100% Export Quality Sewing",
-      "soldOut": false,
-      "visible": true,
-      "featured": false,
-      "badge": "",
-      "video": "https://youtube.com/shorts/Je7jIBbVZc0",
-      "variants": [
-        {
-          "id": "v2pjp9c",
-          "name": "Black",
-          "hex": "#000000",
-          "imgs": [
-            "images/y2zzaqmvniredf.jpg"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "ppurgr3",
-      "code": "RB-109",
-      "name": "Full Sleeve Polo Shirt",
-      "cat": "c-boys",
-      "sub": "s-polo",
-      "events": [],
-      "price": 380,
-      "old": 500,
-      "sizes": [
-        "M",
-        "L",
-        "XL"
-      ],
-      "desc": "📌 প্রোডাক্ট ডিটেইলসঃ\n🧵 ফ্যাব্রিক: প্রিমিয়াম চায়না কর্ড ফেব্রিক্স।\n🔲 ফ্যাব্রিক প্যাটার্ন: স্কয়ার বক্স টেক্সচার।\n🪡 ডিজাইন: প্রিমিয়াম এমব্রয়ডারি লোগো।\n⚖️ জিএসএম: ২৩০ জিএসএম ফেব্রিক্স।\n☁️ সফট ফিল: নরম ও আরামদায়ক।\n👔 কলার: প্রিমিয়াম স্টাইলিশ কাপ কলার।\n😎 লুক: স্টাইলিশ ও প্রিমিয়াম লুক।\n❄️ উপযোগিতা: শীতের জন্য পারফেক্ট।",
-      "soldOut": false,
-      "visible": true,
-      "featured": false,
-      "badge": "",
-      "video": "",
-      "variants": [
-        {
-          "id": "vvv1pcd",
-          "name": "White",
-          "hex": "#ffffff",
-          "imgs": [
-            "images/lzlfzkmvnhiimp.jpg",
-            "images/2iwmaumvnhjoc1.jpg",
-            "images/4hqfe5mvnhjqfd.jpg"
-          ]
-        },
-        {
-          "id": "v2xen30",
-          "name": "Black",
-          "hex": "#000000",
-          "imgs": [
-            "images/nh8vfkmvnhi440.jpg"
-          ]
-        },
-        {
-          "id": "ve5zme0",
-          "name": "Blue",
-          "hex": "#0000ff",
-          "imgs": [
-            "images/2u0ll2mvnhiysu.jpg"
-          ]
-        },
-        {
-          "id": "vatrz6m",
-          "name": "Red",
-          "hex": "#ff0000",
-          "imgs": [
-            "images/n1cjqbmvnhj35v.jpg"
-          ]
-        },
-        {
-          "id": "vdl1ydg",
-          "name": "Maren",
-          "hex": "#888888",
-          "imgs": [
-            "images/zq6rezmvnhj6gu.jpg"
-          ]
-        }
-      ]
-    },
     {
       "id": "p1",
       "code": "RB-101",
@@ -681,4 +519,4 @@
       ]
     }
   ]
-}
+    }
