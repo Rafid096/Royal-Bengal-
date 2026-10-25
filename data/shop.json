@@ -201,7 +201,7 @@
       "code": "RB-112",
       "name": "Trendy Kids Hoodie Set",
       "cat": "c-kids",
-      "sub": "",
+      "sub": "k-girl",
       "events": [
         "e-winter"
       ],
@@ -223,12 +223,44 @@
       "variants": [
         {
           "id": "v9k2sk2",
-          "name": "লিলাক",
-          "hex": "#baabf0",
+          "name": "pink",
+          "hex": "#ff00ff",
           "imgs": [
-            "images/yqe4skmvno0fsk.jpg",
-            "images/qufnshmvno0hke.jpg",
-            "images/yazkcsmvno0iw5.jpg",
+            "images/kucc46mvno0kcb.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p3gii6j",
+      "code": "RB-114",
+      "name": "Trendy Kids Hoodie Set (copy)",
+      "cat": "c-kids",
+      "sub": "",
+      "events": [
+        "e-winter"
+      ],
+      "price": 650,
+      "old": 999,
+      "sizes": [
+        "1-2y",
+        "3-4y",
+        "5-6y",
+        "7-8y",
+        "9-10y"
+      ],
+      "desc": "✓ ফেব্রিক্সঃ ওয়ান সাইড ব্রাশ প্রিমিয়াম কোয়ালিটি।\n✓ হুডি এন্ড প্যান্ট ফেব্রিক্স ২৮০-৩০০ জি.এস.এম।\n✓ প্রিন্টঃ প্রিমিয়াম কোয়ালিটি ডি.টি.এফ প্রিন্ট।\n\n📏 হুডি সাইজঃ\n🔹 ১–২ বছর ➜ বডি ২৪ । লং ১৪ ইঞ্চি।\n🔹 ৩–৪ বছর ➜ বডি ২৬ । লং ১৬ ইঞ্চি।\n🔹 ৫–৬ বছর ➜ বডি ২৮ । লং ১৮ ইঞ্চি।\n🔹 ৭–৮ বছর ➜ বডি ৩০ । লং ২০ ইঞ্চি।\n🔹 ৯–১০ বছর ➜ বডি ৩২ । লং ২২ ইঞ্চি।\n\n🩳 প্যান্ট সাইজঃ\n🔸 ১–২ বছর ➜ কোমর ১৭ । লং ১৮ ইঞ্চি।\n🔸 ৩–৪ বছর ➜ কোমর ১৯ । লং ২১ ইঞ্চি।\n🔸 ৫–৬ বছর ➜ কোমর ২১ । লং ২৪ ইঞ্চি।\n🔸 ৭–৮ বছর ➜ কোমর ২৩ । লং ২৭ ইঞ্চি।\n🔸 ৯–১০ বছর ➜ কোমর ২৫ । লং ৩০ ইঞ্চি।",
+      "soldOut": false,
+      "visible": true,
+      "featured": false,
+      "badge": "New",
+      "video": "",
+      "variants": [
+        {
+          "id": "vso2k7c",
+          "name": "pink",
+          "hex": "#ff00ff",
+          "imgs": [
             "images/kucc46mvno0kcb.jpg"
           ]
         }
