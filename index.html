@@ -274,7 +274,7 @@ const lsGet=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d
 const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 const DISTRICTS='ঢাকা,গাজীপুর,নারায়ণগঞ্জ,নরসিংদী,মানিকগঞ্জ,মুন্সিগঞ্জ,কিশোরগঞ্জ,টাঙ্গাইল,ফরিদপুর,গোপালগঞ্জ,মাদারীপুর,রাজবাড়ী,শরীয়তপুর,চট্টগ্রাম,কক্সবাজার,কুমিল্লা,ফেনী,ব্রাহ্মণবাড়িয়া,চাঁদপুর,নোয়াখালী,লক্ষ্মীপুর,খাগড়াছড়ি,রাঙ্গামাটি,বান্দরবান,রাজশাহী,নাটোর,নওগাঁ,চাঁপাইনবাবগঞ্জ,পাবনা,সিরাজগঞ্জ,বগুড়া,জয়পুরহাট,খুলনা,বাগেরহাট,সাতক্ষীরা,যশোর,ঝিনাইদহ,মাগুরা,নড়াইল,কুষ্টিয়া,চুয়াডাঙ্গা,মেহেরপুর,বরিশাল,ভোলা,পটুয়াখালী,পিরোজপুর,ঝালকাঠি,বরগুনা,সিলেট,মৌলভীবাজার,হবিগঞ্জ,সুনামগঞ্জ,রংপুর,দিনাজপুর,গাইবান্ধা,কুড়িগ্রাম,লালমনিরহাট,নীলফামারী,পঞ্চগড়,ঠাকুরগাঁও,ময়মনসিংহ,জামালপুর,নেত্রকোণা,শেরপুর'.split(',');
 const PH='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect width="400" height="500" fill="#e9ecf3"/><text x="200" y="255" font-size="24" text-anchor="middle" fill="#7a859c" font-family="sans-serif">No photo</text></svg>');
-const DEF={name:'Royal Bengal',tagline:'',logo:'',waIcon:'',brandColor:'#1E3A8A',heroEyebrow:'',heroTitle:'',heroSub:'',heroBtn:'কেনাকাটা শুরু করুন',perks:[],marquee:[],about:'',policies:[],copyright:'© {year} Rafid Ahammed. সর্বস্বত্ব সংরক্ষিত।',orderEmail:'',contactEmail:'',phone:'',whatsapp:'',facebook:'',address:'',bkash:'',nagad:'',feeIn:60,feeOut:120,freeOver:0};
+const DEF={name:'Royal Bengal',tagline:'',logo:'',waIcon:'',brandColor:'#1E3A8A',heroEyebrow:'',heroTitle:'',heroSub:'',heroBtn:'কেনাকাটা শুরু করুন',perks:[],marquee:[],about:'',policies:[],copyright:'© {year} Rafid Ahammed. সর্বস্বত্ব সংরক্ষিত।',orderEmail:'',emailjsService:'',emailjsTemplate:'',emailjsKey:'',contactEmail:'',phone:'',whatsapp:'',facebook:'',address:'',bkash:'',nagad:'',feeIn:60,feeOut:120,freeOver:0};
 let S=null;
 const ui={view:'home',depth:0,ev:'',cat:'',sub:'',q:'',sort:'',p:null,order:null,sending:false,err:'',key:'',errs:{}};
 const form=Object.assign({name:'',phone:'',district:'',upazila:'',address:'',note:'',pay:'cod',trx:''},lsGet('rb_form',{}));
@@ -611,7 +611,13 @@ function doneSheet(){
 
 /* ---------- order email ---------- */
 async function sendOrder(o){
-  const ep=(S.shop.orderEmail||'').trim();
+  const sh=S.shop,ejS=(sh.emailjsService||'').trim(),ejT=(sh.emailjsTemplate||'').trim(),ejK=(sh.emailjsKey||'').trim();
+  if(ejS&&ejT&&ejK){
+    const r=await fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({service_id:ejS,template_id:ejT,user_id:ejK,template_params:{title:`অর্ডার #${o.code}`,name:o.name,email:'order@website',message:`অর্ডার #${o.code}\nনাম: ${o.name}\nফোন: ${o.phone}\nঠিকানা: ${o.addr}\n\nপণ্য:\n${o.itemLines.join('\n')}\n\nসাবটোটাল: ${money(o.sub)}\nডেলিভারি: ${o.fee===0?'ফ্রি':money(o.fee)}\nমোট: ${money(o.total)}\nপেমেন্ট: ${payName()}\nনোট: ${form.note.trim()||'-'}`,subject:`নতুন অর্ডার #${o.code} · ${o.name} · ${money(o.total)}`,order_code:o.code,customer_name:o.name,phone:o.phone,address:o.addr,items:o.itemLines.join('\n'),subtotal:money(o.sub),delivery:o.fee===0?'ফ্রি':money(o.fee),total:money(o.total),payment:payName(),note:form.note.trim()||'-'}})});
+    if(!r.ok)throw new Error('অর্ডার ইমেইল পাঠানো যায়নি');
+    return;
+  }
+  const ep=(sh.orderEmail||'').trim();
   if(!ep)throw new Error('দোকানের অর্ডার ইমেইল সেট করা নেই।');
   const body={_subject:`নতুন অর্ডার #${o.code} — ${o.name} — ${money(o.total)}`,_template:'table',_captcha:'false',
     'অর্ডার নম্বর':'#'+o.code,'নাম':o.name,'মোবাইল':o.phone,'ঠিকানা':o.addr,'পণ্য (কোডসহ)':o.itemLines.join('\n'),
