@@ -1,11 +1,11 @@
 {
   "schema": 2,
   "shop": {
-    "name": "Royal Bengal",
+    "name": "Royals Cart BD",
     "tagline": "ছেলে, মেয়ে ও বাচ্চাদের পছন্দের পোশাক, সারা বাংলাদেশে হোম ডেলিভারি।",
-    "logo": "",
+    "logo": "images/logo-eh9niomvnj67ic.jpg",
     "waIcon": "images/waIcon-p51jxlmvnhqqjx.png",
-    "brandColor": "#524b4b",
+    "brandColor": "#ff5959",
     "heroEyebrow": "নতুন কালেকশন এসেছে",
     "heroTitle": "পছন্দের পোশাক, সারা বাংলাদেশে হোম ডেলিভারি",
     "heroSub": "ছেলে, মেয়ে ও বাচ্চাদের নতুন কালেকশন। পছন্দ করুন, অর্ডার কনফার্ম করুন, হাতে পেয়ে টাকা দিন।",
