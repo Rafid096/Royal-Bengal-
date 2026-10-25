@@ -153,6 +153,41 @@
   ],
   "products": [
     {
+      "id": "p1mm6uq",
+      "code": "RB-110",
+      "name": "Puja Hit Lama Sharee with Blouse Piece",
+      "cat": "c-girls",
+      "sub": "g-saree",
+      "events": [
+        "e-puja"
+      ],
+      "price": 850,
+      "old": 1200,
+      "sizes": [
+        "Free",
+        "Size"
+      ],
+      "desc": "বাজেট ফ্রেন্ডলি দামে সুন্দর ও আকর্ষণীয় লামা সিল্ক শাড়ি।\nআরামদায়ক ফেব্রিক ও জমকালো বর্ডার ডিজাইনের এই শাড়িটি উৎসবে পড়ার উপযুক্ত।\nProduct Details\n🌸 বাজেট ফ্রেন্ডলি লামা সিল্ক\n🌸 শাড়ির দৈর্ঘ্য: ১২ হাত\n🌸 সাথে থাকছে রানিং ব্লাউজ পিস\n🌸 সুন্দর ও আকর্ষণীয় বর্ডার ডিজাইন\n🌸 আরামদায়ক ও স্টাইলিশ কালেকশন",
+      "soldOut": false,
+      "visible": true,
+      "featured": false,
+      "badge": "",
+      "video": "https://youtu.be/_C9hdlHtQW0?si=fNQcDz8YwH4mmKGX",
+      "variants": [
+        {
+          "id": "v08586o",
+          "name": "Gold",
+          "hex": "#cf9117",
+          "imgs": [
+            "images/d6webamvnn305h.jpg",
+            "images/0h50tfmvnn35en.jpg",
+            "images/broo0kmvnn36u8.jpg",
+            "images/5c09vgmvnn39x4.jpg"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pt0blcm",
       "code": "RB-109",
       "name": "Stylish Denim Shirt",
