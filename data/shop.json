@@ -150,6 +150,71 @@
   ],
   "products": [
     {
+      "id": "ppurgr3",
+      "code": "RB-109",
+      "name": "Full Sleeve Polo Shirt",
+      "cat": "c-boys",
+      "sub": "s-polo",
+      "events": [],
+      "price": 380,
+      "old": 500,
+      "sizes": [
+        "M",
+        "L",
+        "XL"
+      ],
+      "desc": "📌 প্রোডাক্ট ডিটেইলসঃ\n🧵 ফ্যাব্রিক: প্রিমিয়াম চায়না কর্ড ফেব্রিক্স।\n🔲 ফ্যাব্রিক প্যাটার্ন: স্কয়ার বক্স টেক্সচার।\n🪡 ডিজাইন: প্রিমিয়াম এমব্রয়ডারি লোগো।\n⚖️ জিএসএম: ২৩০ জিএসএম ফেব্রিক্স।\n☁️ সফট ফিল: নরম ও আরামদায়ক।\n👔 কলার: প্রিমিয়াম স্টাইলিশ কাপ কলার।\n😎 লুক: স্টাইলিশ ও প্রিমিয়াম লুক।\n❄️ উপযোগিতা: শীতের জন্য পারফেক্ট।",
+      "soldOut": false,
+      "visible": true,
+      "featured": false,
+      "badge": "",
+      "video": "",
+      "variants": [
+        {
+          "id": "vvv1pcd",
+          "name": "White",
+          "hex": "#ffffff",
+          "imgs": [
+            "images/lzlfzkmvnhiimp.jpg",
+            "images/2iwmaumvnhjoc1.jpg",
+            "images/4hqfe5mvnhjqfd.jpg"
+          ]
+        },
+        {
+          "id": "v2xen30",
+          "name": "Black",
+          "hex": "#000000",
+          "imgs": [
+            "images/nh8vfkmvnhi440.jpg"
+          ]
+        },
+        {
+          "id": "ve5zme0",
+          "name": "Blue",
+          "hex": "#0000ff",
+          "imgs": [
+            "images/2u0ll2mvnhiysu.jpg"
+          ]
+        },
+        {
+          "id": "vatrz6m",
+          "name": "Red",
+          "hex": "#ff0000",
+          "imgs": [
+            "images/n1cjqbmvnhj35v.jpg"
+          ]
+        },
+        {
+          "id": "vdl1ydg",
+          "name": "Maren",
+          "hex": "#888888",
+          "imgs": [
+            "images/zq6rezmvnhj6gu.jpg"
+          ]
+        }
+      ]
+    },
+    {
       "id": "p1",
       "code": "RB-101",
       "name": "ওয়াশড ডেনিম শার্ট",
