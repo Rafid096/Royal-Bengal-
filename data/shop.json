@@ -149,6 +149,12 @@
       "name": "পূজা কালেকশন",
       "color": "#B4421E",
       "active": false
+    },
+    {
+      "id": "ewsreoc",
+      "name": "World Cup Collection",
+      "color": "#ff0000",
+      "active": false
     }
   ],
   "products": [
