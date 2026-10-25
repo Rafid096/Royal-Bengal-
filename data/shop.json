@@ -150,6 +150,106 @@
   ],
   "products": [
     {
+      "id": "pkp0mt5",
+      "code": "RB-112",
+      "name": "Gents Hoodie for Winter",
+      "cat": "c-boys",
+      "sub": "s-sweat",
+      "events": [
+        "e-winter"
+      ],
+      "price": 750,
+      "old": 850,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "desc": "Main Material: Cotton\nFabrics: Cotton\nPremium Quality\nFabrication: 320(+-)GSM\nSleeve: Full Sleeve\n100% Export Quality Sewing",
+      "soldOut": false,
+      "visible": true,
+      "featured": false,
+      "badge": "",
+      "video": "",
+      "variants": [
+        {
+          "id": "vy8iiuf",
+          "name": "Default",
+          "hex": "#000000",
+          "imgs": [
+            "images/k7pkqpmvnivfi6.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phegs44",
+      "code": "RB-111",
+      "name": "Gents Hoodie for Winter",
+      "cat": "c-boys",
+      "sub": "s-sweat",
+      "events": [
+        "e-winter"
+      ],
+      "price": 750,
+      "old": 850,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "desc": "Main Material: Cotton\nFabrics: Cotton\nPremium Quality\nFabrication: 320(+-)GSM\nSleeve: Full Sleeve\n100% Export Quality Sewing",
+      "soldOut": false,
+      "visible": true,
+      "featured": false,
+      "badge": "",
+      "video": "",
+      "variants": [
+        {
+          "id": "vrrxd3g",
+          "name": "White",
+          "hex": "#ffffff",
+          "imgs": [
+            "images/7yogkumvniu9ii.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p14b02v",
+      "code": "RB-110",
+      "name": "Gents Hoodie for Winter",
+      "cat": "c-boys",
+      "sub": "s-sweat",
+      "events": [],
+      "price": 750,
+      "old": 850,
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "desc": "Main Material: Cotton\nFabrics: Cotton\nPremium Quality\nFabrication: 320(+-)GSM\nSleeve: Full Sleeve\n100% Export Quality Sewing",
+      "soldOut": false,
+      "visible": true,
+      "featured": false,
+      "badge": "",
+      "video": "https://youtube.com/shorts/Je7jIBbVZc0",
+      "variants": [
+        {
+          "id": "v2pjp9c",
+          "name": "Black",
+          "hex": "#000000",
+          "imgs": [
+            "images/y2zzaqmvniredf.jpg"
+          ]
+        }
+      ]
+    },
+    {
       "id": "ppurgr3",
       "code": "RB-109",
       "name": "Full Sleeve Polo Shirt",
