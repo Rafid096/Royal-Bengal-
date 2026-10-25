@@ -145,7 +145,7 @@ const num=v=>parseInt(toEn(v).replace(/[^\d]/g,''),10)||0;
 const fmt=n=>'৳'+Math.round(n).toLocaleString('en-IN');
 const enc=p=>p.split('/').map(encodeURIComponent).join('/');
 const PH='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100"><rect width="80" height="100" fill="#e9ecf3"/><text x="40" y="54" font-size="11" text-anchor="middle" fill="#7a859c" font-family="sans-serif">No photo</text></svg>');
-const DEF={name:'Royal Bengal',tagline:'',logo:'',waIcon:'',brandColor:'#1E3A8A',heroEyebrow:'',heroTitle:'',heroSub:'',heroBtn:'',perks:[],marquee:[],about:'',policies:[],copyright:'© {year} Rafid Ahammed. সর্বস্বত্ব সংরক্ষিত।',orderEmail:'',contactEmail:'',phone:'',whatsapp:'',facebook:'',address:'',bkash:'',nagad:'',feeIn:60,feeOut:120,freeOver:0};
+const DEF={name:'Royal Bengal',tagline:'',logo:'',waIcon:'',brandColor:'#1E3A8A',heroEyebrow:'',heroTitle:'',heroSub:'',heroBtn:'',perks:[],marquee:[],about:'',policies:[],copyright:'© {year} Rafid Ahammed. সর্বস্বত্ব সংরক্ষিত।',orderEmail:'',emailjsService:'',emailjsTemplate:'',emailjsKey:'',contactEmail:'',phone:'',whatsapp:'',facebook:'',address:'',bkash:'',nagad:'',feeIn:60,feeOut:120,freeOver:0};
 const PAGES=[['dash','Dashboard'],['products','Products'],['cats','Categories'],['events','Event collections'],['site','Website & footer'],['contact','Contact & orders'],['help','Help']];
 
 let CFG=null,S=null,SHA=null;
@@ -367,7 +367,8 @@ function pContact(){
   <div class="card"><h2>Contact details</h2><p class="hint">Shown in the footer. The WhatsApp number also powers the floating chat button.</p>
   <div class="g2">${T('Contact email','contactEmail','')}${T('Phone number','phone','','inputmode="tel" placeholder="01XXXXXXXXX"')}</div>
   <div class="g2">${T('WhatsApp number','whatsapp','','inputmode="tel" placeholder="01XXXXXXXXX"')}${T('Facebook page link','facebook','','placeholder="https://facebook.com/yourpage"')}</div>${T('Shop address','address','(optional)')}</div>
-  <div class="card"><h2>New order email</h2><p class="hint">When a customer confirms an order, the full details (with product codes) are emailed here using the free FormSubmit service.</p>${T('Send orders to','orderEmail','(your email, or the secret key FormSubmit gives you)')}
+  <div class="card"><h2>New order email (EmailJS, recommended)</h2><p class="hint">Fill all three to send order emails with the free EmailJS service. Your email address stays inside your EmailJS account, not in the website files. The Public Key is safe to put here.</p><div class="g3">${T('Service ID','emailjsService','(service_xxxxxxx)')}${T('Template ID','emailjsTemplate','(template_xxxxxxx)')}${T('Public Key','emailjsKey','(from Account → General)')}</div></div>
+  <div class="card"><h2>Backup order email (FormSubmit)</h2><p class="hint">Used only when the three EmailJS boxes above are empty. Uses the free FormSubmit service.</p>${T('Send orders to','orderEmail','(your email, or the secret key FormSubmit gives you)')}
   <div class="note"><b>First time only:</b> place a test order on your website. FormSubmit emails an activation link to this address. Click it (check Spam). After activating, you can paste FormSubmit's random key here instead of your email, so your address is not visible in the website files.</div></div>
   <div class="card"><h2>Payments</h2><p class="hint">Customers can always choose cash on delivery. Add numbers to also offer advance payment.</p><div class="g2">${T('bKash number','bkash','(personal)','inputmode="tel"')}${T('Nagad number','nagad','(personal)','inputmode="tel"')}</div></div>
   <div class="card"><h2>Delivery charge</h2><div class="g3">${T('Inside Dhaka (৳)','feeIn','','data-n inputmode="numeric"')}${T('Outside Dhaka (৳)','feeOut','','data-n inputmode="numeric"')}${T('Free delivery above (৳)','freeOver','(0 = off)','data-n inputmode="numeric"')}</div></div>`;
@@ -435,12 +436,28 @@ async function prepImage(file,max,alpha){
   if(!png){x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height)}
   x.drawImage(img,0,0,c.width,c.height);
   const url=c.toDataURL(png?'image/png':'image/jpeg',0.82);
-  return {url,b64:url.split(',')[1],ext:png?'png':'jpg'};
+  let color=null;try{color=detectColor(c)}catch(e){}
+  return {url,b64:url.split(',')[1],ext:png?'png':'jpg',color};
+}
+let lastColor=null;
+const CNAMES=[['কালো',[22,22,24]],['সাদা',[242,242,240]],['ধূসর',[135,135,138]],['ছাই রঙ',[190,190,192]],['লাল',[205,30,40]],['মেরুন',[105,20,38]],['গোলাপি',[240,125,170]],['কমলা',[240,130,30]],['হলুদ',[242,208,45]],['সবুজ',[40,150,70]],['বোতল সবুজ',[15,77,58]],['অলিভ',[110,115,50]],['হালকা সবুজ',[165,205,135]],['আকাশি',[125,190,235]],['নীল',[30,90,200]],['নেভি ব্লু',[25,35,85]],['টিল',[0,130,130]],['বেগুনি',[120,60,160]],['লিলাক',[190,155,210]],['বাদামি',[120,75,45]],['কফি',[85,55,40]],['বেইজ',[222,203,168]],['ক্রিম',[242,232,205]]];
+function colorName(r,g,b){let best='',bd=1e9;CNAMES.forEach(([n,c])=>{const rm=(r+c[0])/2,dr=r-c[0],dg=g-c[1],db=b-c[2],d=(2+rm/256)*dr*dr+4*dg*dg+(2+(255-rm)/256)*db*db;if(d<bd){bd=d;best=n}});return best}
+function detectColor(src){
+  const W=48,c=document.createElement('canvas');c.width=c.height=W;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(src,0,0,W,W);
+  const d=x.getImageData(0,0,W,W).data,px=[];let br=0,bg=0,bb=0,bn=0;
+  for(let j=0;j<W;j++)for(let i=0;i<W;i++){const k=(j*W+i)*4,p=[d[k],d[k+1],d[k+2]];
+    if(i<3||j<3||i>=W-3||j>=W-3){br+=p[0];bg+=p[1];bb+=p[2];bn++}
+    else if(i>=W*.2&&i<W*.8&&j>=W*.12&&j<W*.88)px.push(p)}
+  const B=[br/bn,bg/bn,bb/bn],far=px.filter(p=>Math.hypot(p[0]-B[0],p[1]-B[1],p[2]-B[2])>50),use=far.length>px.length*.12?far:px;
+  const bins={};use.forEach(p=>{const k=(p[0]>>5)+'-'+(p[1]>>5)+'-'+(p[2]>>5);(bins[k]=bins[k]||[]).push(p)});
+  const top=Object.values(bins).sort((a,b)=>b.length-a.length)[0];if(!top)return null;
+  const m=[0,1,2].map(t=>Math.round(top.reduce((a,p)=>a+p[t],0)/top.length));
+  return {hex:'#'+m.map(v=>v.toString(16).padStart(2,'0')).join(''),name:colorName(m[0],m[1],m[2])};
 }
 function pickFile(accept,cb){const i=document.createElement('input');i.type='file';i.accept=accept;i.onchange=()=>{if(i.files&&i.files[0])cb(i.files[0])};i.click()}
 async function newImage(max,alpha,prefix){
   return new Promise(res=>pickFile('image/*',async f=>{
-    try{const r=await prepImage(f,max,alpha);const path='images/'+prefix+uid()+Date.now().toString(36)+'.'+r.ext;pending[path]={b64:r.b64};previews[path]=r.url;res(path)}
+    try{const r=await prepImage(f,max,alpha);const path='images/'+prefix+uid()+Date.now().toString(36)+'.'+r.ext;pending[path]={b64:r.b64};previews[path]=r.url;lastColor=r.color;res(path)}
     catch(e){setStatus('err','That image could not be read. Try a different file.');res(null)}
   }));
 }
@@ -477,7 +494,7 @@ document.addEventListener('click',async e=>{
     case 'del-p':if(ui.confirm==='p'+id){S.products=S.products.filter(x=>x.id!==id);ui.confirm='';markDirty()}else ui.confirm='p'+id;repage();break;
     case 'add-v':{const p=prod(el.dataset.p);p.variants.push({id:'v'+uid(),name:'',hex:'#888888',imgs:[]});markDirty();renderDrawer();break}
     case 'del-v':{const p=prod(el.dataset.p);if(p.variants.length>1){p.variants=p.variants.filter(v=>v.id!==el.dataset.v);markDirty();renderDrawer()}break}
-    case 'add-img':{const v=prod(el.dataset.p).variants.find(x=>x.id===el.dataset.v);const path=await newImage(900,false,'');if(path){v.imgs.push(path);markDirty();renderDrawer()}break}
+    case 'add-img':{const v=prod(el.dataset.p).variants.find(x=>x.id===el.dataset.v);const first=!v.imgs.length,path=await newImage(900,false,'');if(path){v.imgs.push(path);if(lastColor&&(first||!v.name)){const nm=(v.name||'').trim();if(!nm||nm==='Default'){v.name=lastColor.name;v.hex=lastColor.hex}else if(first){v.hex=lastColor.hex}toast('Color detected: '+lastColor.name+' (you can change it)')}markDirty();renderDrawer()}break}
     case 'rep-img':{const v=prod(el.dataset.p).variants.find(x=>x.id===el.dataset.v);const path=await newImage(900,false,'');if(path){v.imgs[+el.dataset.i]=path;markDirty();renderDrawer()}break}
     case 'rm-img':{const v=prod(el.dataset.p).variants.find(x=>x.id===el.dataset.v);v.imgs.splice(+el.dataset.i,1);markDirty();renderDrawer();break}
     case 'up-video':{const p=prod(el.dataset.p);const path=await newVideo();if(path){p.video=path;markDirty();renderDrawer()}break}
